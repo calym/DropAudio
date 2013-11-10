@@ -10,23 +10,24 @@
   </head>
   <body>
     <h1>DropAudio</h1>
-    <ul>
-      <li>click: create a ball</li>
-      <li>spacebar: clear</li>
-      <li>up and down arrows: change (or reverse!) gravity</li>
-      <li>left and right arrows: control collisions</li>
+    Click to create a circle.
 
     </ul>  
     <div id="msg"></div>
 
     <canvas id="sketch" data-processing-sources="dropaudio.pde"></canvas>
 
-    <button onclick="startSketch();">
-        Start</button>
-    <button onclick="stopSketch();">
-        Stop</button>
-   
-        
+    <ul>
+      <li><button onclick="clearCanvas();">Clear</button></li>
+      <li><button onclick="incrementGravity();">Gravity +</button></li>
+      <li><button onclick="decrementGravity();">Gravity -</button></li>
+      <li><button onclick="collisionOn();">Bounce!</button></li>
+      <li><button onclick="collisionOff();">Ahh, Stop Bouncing</button></li>                    
+      <li><button onclick="incrementFriction();">Friction +</button></li>
+      <li><button onclick="decrementFriction();">Friction -</button></li>
+      <li><button onclick="incrementSpring();">Spring +</button></li>
+      <li><button onclick="decrementSpring();">Spring -</button></li>       
+    </ul>    
       
   </body>
 </html>

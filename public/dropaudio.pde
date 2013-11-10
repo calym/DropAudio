@@ -1,6 +1,4 @@
-//stuff to add: turn on collisions
-    //variable gravity and friction?
-    //clear button
+
     //auto mode (like the existing version)
     //auto mode plus clicky mode?
 
@@ -24,14 +22,10 @@
     ArrayList balls;
     
     
-    String processingString = "Hello from Processing!";
-
-
-
-
+    //String processingString = "Hello from Processing!";
 
     void setup() {
-      printMessage(jsString + " " + processingString);
+      //printMessage(jsString + " " + processingString);
       size(600, 600);
       background(255);
       noStroke();
@@ -55,7 +49,6 @@
         background(255);
         for (int i = balls.size() - 1; i>= 0; i--) {
           Ball ball = (Ball) balls.get(i);
-          //ball.collide();
           ball.move();
           ball.display();
         }
@@ -72,26 +65,7 @@
         break;
       }
     }
-
-    void keyPressed() {
-      if (key == ' ') {
-        setup();
-      } else if (keyCode == "38") {
-          gravity = gravity + 0.1;
-          println(gravity);
-        } else if (keyCode == "40") {
-          gravity = gravity - 0.1;
-          println(gravity);
-        } else if (keyCode == '39') {
-          state = 1;
-        } else if (keyCode == '37') {
-          state = 0;
-        }
-      }
-    
-    
-
-
+  
 
     class Ball {
       color c;
@@ -177,16 +151,49 @@
     }
 
   
-
-  
   void display() {
     fill(c);
     ellipse(x, y, diameter, diameter);
   }
 }
 
-
-
   void mousePressed() {
      balls.add(new Ball(mouseX, mouseY, random(20, 100), numBalls, balls)); 
     }
+
+  void incrementGravity() {
+    gravity += 0.1;
+  }  
+
+  void decrementGravity() {
+    gravity -= 0.1;
+  }
+
+  void collisionOn() {
+    state = 1;
+  }
+
+  void collisionOff() {
+    state = 0;
+  }
+
+  void incrementFriction() {
+    friction += 0.1;
+    println(friction);
+  }
+
+  void decrementFriction() {
+    friction -= 0.1;
+    println(friction);
+  }
+
+  void incrementSpring() {
+    spring += 0.1;
+    println(spring);
+  }
+
+  void decrementSpring() {
+    spring -= 0.1;
+    println(spring);
+  }
+
