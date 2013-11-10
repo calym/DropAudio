@@ -1,18 +1,6 @@
 
-    //auto mode (like the existing version)
-    //auto mode plus clicky mode?
 
-    file1 = "sound/d3.wav";
-    file2 = "sound/a3.wav";
-    file3 = "sound/g3.wav";
-    file4 = "sound/f3.wav";
-    file5 = "sound/c3.wav";
-
-    Audio audio1 = new Audio();
-    Audio audio2 = new Audio();
-    Audio audio3 = new Audio();
-    Audio audio4 = new Audio();
-    Audio audio5 = new Audio();
+    String[] files = {"sound/d3.wav","sound/c3.wav","sound/f3.wav","sound/a3.wav","sound/g3.wav"};
 
     int state = 0;
     int numBalls = 1;
@@ -30,18 +18,11 @@
       background(255);
       noStroke();
       smooth();
-      audio1.setAttribute("src", file1);
-      audio2.setAttribute("src", file2);
-      audio3.setAttribute("src", file3);
-      audio3.setAttribute("src", file4);
-      audio3.setAttribute("src", file5);
       balls = new ArrayList();
       for (int i = 0; i < numBalls; i++) {
         balls.add(new Ball(random(width), random(height), random(20, 150), i, balls));
       }
     }
-
-
 
     void draw() {
       switch(state) {
@@ -68,6 +49,7 @@
   
 
     class Ball {
+      function f;
       color c;
       float x, y;
       float diameter;
@@ -75,9 +57,11 @@
       float vy = 0;
       int id;
       ArrayList others;
+
   
  
       Ball(float xin, float yin, float din, int idin, ArrayList oin) {
+        f = new Audio(files[int(random(files.length))]);
         c = color(random(255),random(255),random(255),random(50,175));
         x = xin;
         y = yin;
@@ -127,28 +111,15 @@
         y = diameter/2;
         vy *= friction;
       }
-      if (((y+diameter/2) > (height-1)) && ((y+diameter/2) < height)) {
-        //println(y+diameter/2);
-        
-        sound = int(random(4));
 
-        println(sound);
-      if (sound == 1) {  
-        audio2.play();
-        } else if (sound == 0) {
-        audio1.play();
-        } else if (sound == 2) {
-          audio5.play();
-        } else if (sound == 3) {
-          audio3.play();
-        } else if (sound == 4) {
-          audio4.play();
-        }
-        
-      }
-        
+
+      //This code triggers the audio when the balls hit the bottom.
       
-    }
+      if (((y+diameter/2) > (height-1)) && ((y+diameter/2) < height)) {
+        println(y+diameter/2);
+        f.play();
+        }
+      }
 
   
   void display() {
