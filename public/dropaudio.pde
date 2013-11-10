@@ -15,13 +15,8 @@
     Audio audio3 = new Audio();
     Audio audio4 = new Audio();
     Audio audio5 = new Audio();
-    
-    // String[] audioObjects = new String[3];
-    // audioObjects[0] = "audio1";
-    // audioObjects[1] = "audio2";
-    // audioObjects[2] = "audio3";
 
-
+    int state = 0;
     int numBalls = 1;
     float spring = 0.1;
     float gravity = 0.3;
@@ -36,8 +31,9 @@
 
 
     void setup() {
-        printMessage(jsString + " " + processingString);
+      printMessage(jsString + " " + processingString);
       size(600, 600);
+      background(255);
       noStroke();
       smooth();
       audio1.setAttribute("src", file1);
@@ -51,16 +47,51 @@
       }
     }
 
-    void draw() 
-    {
-      background(255);
-      for (int i = balls.size() - 1; i>= 0; i--) {
-        Ball ball = (Ball) balls.get(i);
-        ball.collide();
-        ball.move();
-        ball.display(); 
+
+
+    void draw() {
+      switch(state) {
+        case 0:
+        background(255);
+        for (int i = balls.size() - 1; i>= 0; i--) {
+          Ball ball = (Ball) balls.get(i);
+          //ball.collide();
+          ball.move();
+          ball.display();
+        }
+        break;
+
+        case 1:
+        background(255);
+        for (int i = balls.size() - 1; i>= 0; i--) {
+          Ball ball = (Ball) balls.get(i);
+          ball.collide();
+          ball.move();
+          ball.display();
+        }
+        break;
       }
     }
+
+    void keyPressed() {
+      if (key == ' ') {
+        setup();
+      } else if (keyCode == "38") {
+          gravity = gravity + 0.1;
+          println(gravity);
+        } else if (keyCode == "40") {
+          gravity = gravity - 0.1;
+          println(gravity);
+        } else if (keyCode == '39') {
+          state = 1;
+        } else if (keyCode == '37') {
+          state = 0;
+        }
+      }
+    
+    
+
+
 
     class Ball {
       color c;
@@ -144,12 +175,17 @@
         
       
     }
+
+  
+
   
   void display() {
     fill(c);
     ellipse(x, y, diameter, diameter);
   }
 }
+
+
 
   void mousePressed() {
      balls.add(new Ball(mouseX, mouseY, random(20, 100), numBalls, balls)); 

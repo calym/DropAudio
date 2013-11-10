@@ -10,7 +10,13 @@
   </head>
   <body>
     <h1>DropAudio</h1>
-    <p>Click!</p>
+    <ul>
+      <li>click: create a ball</li>
+      <li>spacebar: clear</li>
+      <li>up and down arrows: change (or reverse!) gravity</li>
+      <li>left and right arrows: control collisions</li>
+
+    </ul>  
     <div id="msg"></div>
 
     <canvas id="sketch" data-processing-sources="dropaudio.pde"></canvas>
@@ -19,30 +25,8 @@
         Start</button>
     <button onclick="stopSketch();">
         Stop</button>
-    <script type="application/javascript">
-        var processingInstance;
-
-        function startSketch() {
-            switchSketchState(true);
-        }
-
-        function stopSketch() {
-            switchSketchState(false);
-            
-        }
-
-        function switchSketchState(on) {
-            if (!processingInstance) {
-                processingInstance = Processing.getInstanceById('sketch');
-            }
-
-            if (on) {
-                processingInstance.loop();  // call Processing loop() function
-            } else {
-                processingInstance.noLoop(); // stop animation, call noLoop()
-            }
-        }
-    </script>
+   
+        
       
   </body>
 </html>
