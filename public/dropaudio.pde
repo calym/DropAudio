@@ -1,6 +1,6 @@
 
 
-    String[] files = {"sound/d3.wav","sound/c3.wav","sound/f3.wav","sound/a3.wav","sound/g3.wav"};
+    String[] files = {"sound/a3.wav","sound/d3.wav","sound/c3.wav","sound/f3.wav","sound/g3.wav","sound/f4.wav","sound/f2.wav","sound/d4.wav","sound/d2.wav","sound/c5.wav","sound/c4.wav","sound/c2.wav"};
 
     int state = 0;
     int numBalls = 1;
@@ -14,7 +14,14 @@
 
     void setup() {
       //printMessage(jsString + " " + processingString);
-      size(600, 600);
+      width = 700;
+      height = 400;
+      state = 0;
+      numBalls = 1;
+      spring = 0.1;
+      gravity = 0.3;
+      friction = -0.2;
+      size(width, height);
       background(255);
       noStroke();
       smooth();
@@ -116,7 +123,11 @@
       //This code triggers the audio when the balls hit the bottom.
       
       if (((y+diameter/2) > (height-1)) && ((y+diameter/2) < height)) {
-        println(y+diameter/2);
+        //println(y+diameter/2);
+        f.play();
+        }
+
+      if ((y-diameter/2 > 0) && ((y-diameter/2) < 10)) {
         f.play();
         }
       }
