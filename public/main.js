@@ -1,55 +1,65 @@
 
+// var gravity = gravity;
+//         var printGravity = function (gravity) {
+//             document.getElementById('gravity').innerHTML = "gravity: " + gravity;
+//         };
 
-	
-        // var jsString = "Hello from JavaScript!";
-        //         var printMessage = function (msg) {
-        //             document.getElementById('msg').innerHTML = "Message: " + msg;
-        //         };
+$( document ).ready(function() {
+        var canvas = document.getElementById("sketch");
+        var processingInstance;
 
-
-var canvas = document.getElementById("sketch");
-// attaching the sketchProc function to the canvas
-//var processingInstance = new Processing(canvas, sketchProc);
-//var processingInstance;
-var processingInstance;
-        function clearCanvas(on) {
+        $("#reset").click(function() {
                 processingInstance = Processing.getInstanceById('sketch');
                 processingInstance.setup();
-        }
+        });
 
-        function incrementGravity(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.incrementGravity();
-        }
+        // $("#gravityup").click(function() {
+        //         processingInstance = Processing.getInstanceById('sketch');
+        //         processingInstance.incrementGravity();
+        // });
 
-        function decrementGravity(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.decrementGravity();
-        }
+        // $("#gravitydown").click(function() {
+        //         processingInstance = Processing.getInstanceById('sketch');
+        //         processingInstance.decrementGravity();
+        // });
 
-        function collisionOn(on) {
+        $("#collide").click(function() {
                 processingInstance = Processing.getInstanceById('sketch');
                 processingInstance.collisionOn();
-        }
-        function collisionOff(on) {
+        });
+
+        $("#collideoff").click(function() {
                 processingInstance = Processing.getInstanceById('sketch');
                 processingInstance.collisionOff();
-        }
-        function incrementFriction(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.incrementFriction();
-        }
-        function decrementFriction(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.decrementFriction();
-        }
-        function incrementSpring(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.incrementSpring();
-        }
-        function decrementSpring(on) {
-                processingInstance = Processing.getInstanceById('sketch');
-                processingInstance.decrementSpring();
-        }
-            
-        
+        });
+
+        $("#getvalue").simpleSlider();
+        $("#getvalue").bind("slider:changed", function (event, data) {
+          //The currently selected value of the slider
+          processingInstance = Processing.getInstanceById('sketch');
+          processingInstance.changeGravity(data.value);
+          gravity = data.value;
+          //console.log(gravity);
+          // The value as a ratio of the slider (between 0 and 1)
+          // alert(data.ratio);
+        });
+        $("#getvalue").simpleSlider("setValue", 0.05);
+        $("#getvalue").simpleSlider("setRatio", 0.009);
+
+        /////
+
+        // $("#fric").simpleSlider();
+        // $("#fric").bind("slider:changed", function (event, data) {
+        //   //The currently selected value of the slider
+        //   processingInstance = Processing.getInstanceById('sketch');
+        //   processingInstance.changeFriction(data.value);
+        //   friction = data.value;
+        //   // The value as a ratio of the slider (between 0 and 1)
+        //   // alert(data.ratio);
+        // });
+        // $("#fric").simpleSlider("setValue", -0.05);
+        // $("#fric").simpleSlider("setRatio", 0.009);
+
+
+                  
+}); //closes document

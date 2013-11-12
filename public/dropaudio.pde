@@ -8,12 +8,10 @@
     float gravity = 0.3;
     float friction = -0.2;
     ArrayList balls;
+
     
-    
-    //String processingString = "Hello from Processing!";
 
     void setup() {
-      //printMessage(jsString + " " + processingString);
       width = 700;
       height = 400;
       state = 0;
@@ -65,7 +63,6 @@
       int id;
       ArrayList others;
 
-  
  
       Ball(float xin, float yin, float din, int idin, ArrayList oin) {
         f = new Audio(files[int(random(files.length))]);
@@ -123,11 +120,11 @@
       //This code triggers the audio when the balls hit the bottom.
       
       if (((y+diameter/2) > (height-1)) && ((y+diameter/2) < height)) {
-        //println(y+diameter/2);
         f.play();
+        //println("bounce" + f);
         }
 
-      if ((y-diameter/2 > 0) && ((y-diameter/2) < 10)) {
+      if ((y-diameter/2 > 0) && ((y-diameter/2) < 5)) {
         f.play();
         }
       }
@@ -143,13 +140,10 @@
      balls.add(new Ball(mouseX, mouseY, random(20, 100), numBalls, balls)); 
     }
 
-  void incrementGravity() {
-    gravity += 0.1;
+  void changeGravity(g) {
+    gravity = g;
+    
   }  
-
-  void decrementGravity() {
-    gravity -= 0.1;
-  }
 
   void collisionOn() {
     state = 1;
@@ -159,23 +153,13 @@
     state = 0;
   }
 
-  void incrementFriction() {
-    friction += 0.1;
-    println(friction);
+  void changeFriction(fr) {
+    friction = fr;
   }
 
-  void decrementFriction() {
-    friction -= 0.1;
-    println(friction);
+
+  void changeSpring(spr) {
+    spring = spr;
   }
 
-  void incrementSpring() {
-    spring += 0.1;
-    println(spring);
-  }
-
-  void decrementSpring() {
-    spring -= 0.1;
-    println(spring);
-  }
-
+  
