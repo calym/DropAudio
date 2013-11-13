@@ -9,11 +9,9 @@
     float friction = -0.2;
     ArrayList balls;
 
-    
-
     void setup() {
-      width = 700;
-      height = 400;
+      width = 650;
+      height = 350;
       state = 0;
       numBalls = 1;
       spring = 0.1;
@@ -124,6 +122,8 @@
         //println("bounce" + f);
         }
 
+      //This code triggers the audio when the balls hit the top
+
       if ((y-diameter/2 > 0) && ((y-diameter/2) < 5)) {
         f.play();
         }
@@ -141,8 +141,7 @@
     }
 
   void changeGravity(g) {
-    gravity = g;
-    
+    gravity = g;  
   }  
 
   void collisionOn() {
@@ -156,7 +155,6 @@
   void changeFriction(fr) {
     friction = fr;
   }
-
 
   void changeSpring(spr) {
     spring = spr;
